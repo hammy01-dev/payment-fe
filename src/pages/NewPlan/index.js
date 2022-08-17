@@ -1,7 +1,8 @@
 import {useState , useEffect} from 'react'
 import {useNavigate } from 'react-router-dom';
-import Validator from '../../helpers/PlanVaildator'
+import { Validator,Modal } from '../../components/index';
 import Service from '../../services/PlanService'
+import './styles.css'
 function NewPlan(){
   const navigate = useNavigate()
   const [monthlyFee, setMontlyFee] = useState('')
@@ -54,17 +55,19 @@ function NewPlan(){
   }
 
   return(
+    <>
+  <Modal>
+  <form className = 'custom-form' onSubmit={handleSubmit}>
+      <h5>ADD NEW PLAN</h5>
 
-  <form style={{padding:'30px'}}  onSubmit={handleSubmit}>
-
-    <div className="form-group col-md-6 mb-3">
+    <div className="form-group">
       <label for="exampleInputEmail1">Plan Name</label>
       <input type="text" className="form-control mb-2" id="MonthlyFee" aria-describedby="emailHelp" placeholder="Name"
       onChange={(e) => onChange('name',e.target.value)}/>
       {errors.name && planName !== ''? <div className='alert alert-danger'>Length should be Greater then 6 and must be text</div>: ''}
     </div>
 
-    <div className="form-group col-md-2 mb-3">
+    <div className="form-group">
       <label for="exampleInputPassword1">Monthly Fee</label>
       <input type="integer  " className="form-control" id="integer" placeholder="Monthly Fee"
        onChange={(e) => onChange('fee',e.target.value)}/>
@@ -73,7 +76,9 @@ function NewPlan(){
 
     <button type="submit" className="btn btn-primary" disabled={!disabled}>Submit</button>
 
-</form>
+  </form>
+  </Modal>
+  </>
 
     )
 }

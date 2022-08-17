@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { SubscriptionService } from '../../services/SubscriptionService';
+import Modal from '../../components/modal/modal';
 
-function Plans() {
+function Subscriptions() {
   const [plans, setPlan] = useState([]);
   useEffect(() => {
     const apiService = () => {
@@ -12,42 +13,40 @@ function Plans() {
     apiService();
   }, []);
 
+  const tablehead = ['User','Plan','Monthly Fee']
+  const tablebody = ['name','monthly_fee']
+
   return (
+    <>
+    <Modal style={{'width':'50%'}}>
+      <div className="demo container  row mainContainer">
+        <table className="table">
+          <thead>
+            <tr>
+            {tablehead.map((name)=>(
+              <th scope="col">{name}</th>
+        ))}
+            </tr>
+          </thead>
 
-    // eslint-disable-next-line react/jsx-filename-extension
-    <div className="demo">
-      <div className="container">
-        <div className="row">
+          {plans.map((user, index) => (
+            <tbody>
 
-          <div className="mainContainer">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">User</th>
-                  <th scope="col">Plan Name</th>
-                  <th scope="col">Monthly Fee</th>
-                </tr>
-              </thead>
-
-              {plans.map((plan1, index) => (
-                <tbody>
-
-                  {plan1.plans.map((feature, index) => (
-                    <tr data-index={index}>
-                      <td>{plan1.name}</td>
-                      <td>{feature.name}</td>
-                      <td>{feature.monthly_fee}</td>
-                    </tr>
+              {user.plans.map((plan, index) => (
+                <tr data-index={index}>
+                  <td>{user.name}</td>
+                  {tablebody.map((body)=>(
+                    <td>{plan[body]}</td>
                   ))}
-                </tbody>
+                </tr>
               ))}
-            </table>
-          </div>
-        </div>
+            </tbody>
+          ))}
+        </table>
       </div>
-    </div>
-
+    </Modal>
+  </>
   );
 }
 
-export default Plans;
+export default Subscriptions;

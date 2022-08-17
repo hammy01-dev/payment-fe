@@ -21,25 +21,6 @@ let Service = {
 
   },
 
-  // NewPlanService:(params)=>{
-  //   try{
-  //   return new Promise((resolve,reject)=>{
-  //     try{
-
-  //       fetch('http://localhost:3001/plans/',{method: 'Post',body:{params}}).then((res)=>{
-  //         res.json().then(data=>resolve(data))
-  //       }).catch((e)=>{console.log('this is errror',e)})
-  //     }
-  //     catch(e){
-  //       reject(e)
-  //     }
-
-  //   })
-
-  //   }catch(e){return e}
-
-  // }
-
   NewPlanService:(params)=>{
     try{
     return new Promise((resolve,reject)=>{

@@ -1,16 +1,22 @@
 import React from 'react'
-import { Route, Routes ,useLocation} from 'react-router-dom'
-import NewPlan from '../pages/NewPlan/index'
-import Plans from '../pages/PlanListing/index'
+import { Route, Routes } from 'react-router-dom'
+// import NewPlan from '../pages/NewPlan/index'
+// import Plans from '../pages/PlanListing/index'
+import {NewFeature,NewPlan,FeatureDetail,Subscriptions,} from '../pages/index'
+
 
 
 const PlanRouter = () => {
-  const {url} = useLocation()
   return (
-    <Routes>
-      <Route path={`/new`} exact component={NewPlan}/>
-      <Route path={`${url}/index`} exact component={Plans}/>
-    </Routes>
+    <>
+    <Route>
+        <Route path='feature/new' element={<NewFeature/>}/>
+        <Route path='new'  element={<NewPlan/>}/>
+        <Route path='features' element={<FeatureDetail/>}/>
+        <Route path='subscriptions' element={<Subscriptions/>} />
+        <Route path="*"></Route>
+    </Route>
+    </>
   )
 }
 
